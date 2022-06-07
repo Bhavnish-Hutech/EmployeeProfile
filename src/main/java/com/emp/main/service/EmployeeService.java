@@ -20,7 +20,7 @@ public class EmployeeService implements UserDetailsService {
 
 	@Autowired
 	private EmployeeRepository empRepo;
-
+	
 	public generalresponse saveEmployeeProfile(EmployeeProfile save) throws ExistException {
 		generalresponse show = new generalresponse();
 		String tempEmail = save.getEmail();
@@ -34,6 +34,7 @@ public class EmployeeService implements UserDetailsService {
 		if (profile != null) {
 			throw new ExistException("this emailId is already exist:");
 		}
+		
 		empRepo.save(save);
 		return show;
 	}
@@ -45,16 +46,10 @@ public class EmployeeService implements UserDetailsService {
 	public EmployeeProfile getEmployeeProfileByUsername(String username) {
 		return empRepo.findByUsername(username);
 	}
-//
-//	public List<EmployeeProfile> saveEmployeeProfiles(List<EmployeeProfile> saves) {
-//		//ArrayList of the employee
-//		List<EmployeeProfile> response = new ArrayList<EmployeeProfile>();
-//		//iterate
-//		for (int i = 0; i < saves.size(); i++) {
-//			response.add(this.saveEmployeeProfile(saves.get(i)));
-//		}
-//		return response;
-//	}
+
+    public List<EmployeeProfile> saveEmployeeProfiles(List<EmployeeProfile> saves) {
+			return empRepo.saveAll(saves);
+			}
 
 	public List<EmployeeProfile> getEmployeeProfiles() {
 		return empRepo.findAll();
@@ -86,7 +81,6 @@ public class EmployeeService implements UserDetailsService {
 		existingEmployeeProfile.setFirstName(update.getFirstName());
 		existingEmployeeProfile.setLastName(update.getLastName());
 		existingEmployeeProfile.setEmail(update.getEmail());
-		existingEmployeeProfile.setId(update.getId());
 		existingEmployeeProfile.setPassword(update.getPassword());
 		return empRepo.save(existingEmployeeProfile);
 
