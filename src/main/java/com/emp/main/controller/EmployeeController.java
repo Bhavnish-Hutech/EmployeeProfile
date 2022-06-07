@@ -34,9 +34,11 @@ public class EmployeeController {
 
 	@Autowired
 	private AuthenticationManager manager;
-
+	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	
 
 	// jwt token
 	@Autowired
@@ -45,19 +47,17 @@ public class EmployeeController {
 	// Adding single employee
 	@PostMapping("/addEmployee")
 	public generalresponse addEmployee(@Valid @RequestBody EmployeeProfile save) {
-		
 		String password = save.getPassword();
 		String CrytedPassword = bCryptPasswordEncoder.encode(password);
 		save.setPassword(CrytedPassword);
-
 		return service.saveEmployeeProfile(save);
 	}
 
 	// Adding List of the employees
-//	@PostMapping("/addEmployees")
-//    public List<EmployeeProfile> addEmployees(@RequestBody  List<EmployeeProfile> saves) {
-//		return service.saveEmployeeProfiles(saves);
-//	}
+	@PostMapping("/addEmployees")
+    public List<EmployeeProfile> addEmployees(@RequestBody  List<EmployeeProfile> saves) {
+		return service.saveEmployeeProfiles(saves);
+	}
 
 	// shows the list of the employees
 	@GetMapping("/shows")
@@ -81,6 +81,7 @@ public class EmployeeController {
 	// Update the employee By search with ID
 	@PutMapping("/update/{id}")
 	public EmployeeProfile UpdateEmployeeProfile(@Valid @RequestBody EmployeeProfile update) {
+		
 		String password = update.getPassword();
 		String CrytedPassword = bCryptPasswordEncoder.encode(password);
 		update.setPassword(CrytedPassword);
