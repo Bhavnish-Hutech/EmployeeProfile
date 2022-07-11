@@ -1,15 +1,10 @@
 package com.emp.main.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "profile")
@@ -33,18 +28,6 @@ public class EmployeeProfile {
 
 	@NotEmpty(message = "password could not be empty")
 	private String password;
-
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	private SubjectProfile subject;
-
-	public SubjectProfile getSubject() {
-		return subject;
-	}
-
-	public void setSubject(SubjectProfile subject) {
-		this.subject = subject;
-	}
 
 	public Long getId() {
 		return id;

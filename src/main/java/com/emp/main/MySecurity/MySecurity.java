@@ -32,7 +32,7 @@ public class MySecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().cors().disable().authorizeRequests().antMatchers("/token", "/addEmployee", "/addSubject", "/update/{id}").permitAll()
+		http.csrf().disable().cors().disable().authorizeRequests().antMatchers("/addEmployee", "/token").permitAll()
 				.anyRequest().authenticated().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

@@ -47,10 +47,6 @@ public class EmployeeService implements UserDetailsService {
 		return empRepo.findByUsername(username);
 	}
 
-    public List<EmployeeProfile> saveEmployeeProfiles(List<EmployeeProfile> saves) {
-			return empRepo.saveAll(saves);
-			}
-
 	public List<EmployeeProfile> getEmployeeProfiles() {
 		return empRepo.findAll();
 
@@ -60,7 +56,7 @@ public class EmployeeService implements UserDetailsService {
 		return empRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("user not found :" + id));
 	}
 
-	public EmployeeProfile getEmployeeProfileByFirstName(String firstName) throws ResourceNotFoundException {
+	public EmployeeProfile getEmployeeProfileByFirstName(String firstName){
 
 		return empRepo.findByFirstName(firstName);
 

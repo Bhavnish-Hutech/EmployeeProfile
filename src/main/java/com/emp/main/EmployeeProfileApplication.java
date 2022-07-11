@@ -13,12 +13,3 @@ public class EmployeeProfileApplication {
 	}
 
 }
-
-
-//model - arguments
-//repository - interface
-//service - handle exception also
-//controller - create api
-//security -  allow api to use  
-//JWT token - generate token
-//filter - filter the token 
